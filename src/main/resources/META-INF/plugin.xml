@@ -1,19 +1,33 @@
 <idea-plugin>
-    <id>com.github.jothepro.djinniintellijplugin</id>
-    <name>djinni-intellij-plugin</name>
-    <vendor>jothepro</vendor>
+    <id>com.github.cross-language-cpp.djinni-intellij-plugin</id>
+    <name>Djinni IDL file support</name>
+    <vendor>cross-language-cpp</vendor>
 
-    <!-- Product and plugin compatibility requirements -->
-    <!-- https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html -->
-    <depends>com.intellij.modules.platform</depends>
 
-    <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.jothepro.djinniintellijplugin.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.jothepro.djinniintellijplugin.services.MyProjectService"/>
-    </extensions>
+  <!-- please see https://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
+  <idea-version since-build="139"/>
 
-    <applicationListeners>
-        <listener class="com.github.jothepro.djinniintellijplugin.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
-    </applicationListeners>
+
+  <depends>com.intellij.modules.lang</depends>
+
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!-- Add your extensions here -->
+    <fileTypeFactory implementation="com.github.cross_language_cpp.djinni_intellij_plugin.DjinniFileTypeFactory"/>
+    <lang.parserDefinition language="Djinni" implementationClass="com.github.cross_language_cpp.djinni_intellij_plugin.DjinniParserDefinition"/>
+    <lang.parserDefinition language="DjinniYaml" implementationClass="com.github.cross_language_cpp.djinni_intellij_plugin.YamlParserDefinition"/>
+    <lang.syntaxHighlighterFactory key="Djinni" implementationClass="com.github.cross_language_cpp.djinni_intellij_plugin.DjinniSyntaxHighlighterFactory"/>
+    <colorSettingsPage implementation="com.github.cross_language_cpp.djinni_intellij_plugin.DjinniColorSettingsPage"/>
+
+    <annotator language="Djinni" implementationClass="com.github.cross_language_cpp.djinni_intellij_plugin.DjinniAnnotator"/>
+    <completion.contributor language="Djinni" implementationClass="com.github.cross_language_cpp.djinni_intellij_plugin.DjinniCompletionContributor"/>
+    <psi.referenceContributor implementation="com.github.cross_language_cpp.djinni_intellij_plugin.DjinniReferenceContributor"/>
+    <lang.findUsagesProvider language="Djinni" implementationClass="com.github.cross_language_cpp.djinni_intellij_plugin.DjinniFindUsagesProvider"/>
+    <lang.foldingBuilder language="Djinni" implementationClass="com.github.cross_language_cpp.djinni_intellij_plugin.DjinniFoldingBuilder"/>
+    <gotoSymbolContributor implementation="com.github.cross_language_cpp.djinni_intellij_plugin.DjinniChooseByNameContributor"/>
+    <lang.psiStructureViewFactory language="Djinni" implementationClass="com.github.cross_language_cpp.djinni_intellij_plugin.DjinniStructureViewFactory"/>
+    <lang.formatter language="Djinni" implementationClass="com.github.cross_language_cpp.djinni_intellij_plugin.DjinniFormattingModelBuilder"/>
+    <lang.commenter language="Djinni" implementationClass="com.github.cross_language_cpp.djinni_intellij_plugin.DjinniCommenter"/>
+    <lang.braceMatcher language="Djinni" implementationClass="com.github.cross_language_cpp.djinni_intellij_plugin.DjinniBraceMatcher"/>
+  </extensions>
 </idea-plugin>
