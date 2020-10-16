@@ -32,7 +32,7 @@ To build on your local machine, run the `buildPlugin` task
 With the `runIde` task you can run the plugin in an isolated IDE and get logs about whats going on.
 
 ### Install
-To install the local plugin build go to
+To install the plugin you just built locally, go to
 
 <kbd>Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>⚙</kbd> > <kbd>Install plugin from disk...</kbd>
 
