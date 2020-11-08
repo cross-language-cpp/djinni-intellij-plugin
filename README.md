@@ -5,7 +5,9 @@
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
 
 <!-- Plugin description -->
-Add some basic navigation, code-completion and error highlighting support to .djinni files.
+Adds basic navigation, code-completion and error highlighting support for `.djinni` IDL files.
+
+Djinni is a tool for generating cross-language type declarations and interface bindings. It's designed to connect C++ with either Java or Objective-C.
 <!-- Plugin description end -->
 
 ## Installation
