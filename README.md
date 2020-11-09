@@ -1,8 +1,8 @@
 # djinni-intellij-plugin
 
 ![Build](https://github.com/cross-language-cpp/djinni-intellij-plugin/workflows/Build/badge.svg)
-[![Version](https://img.shields.io/jetbrains/plugin/v/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/PLUGIN_ID.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
+[![Version](https://img.shields.io/jetbrains/plugin/v/15347-djinni-idl-file-support.svg)](https://plugins.jetbrains.com/plugin/15347-djinni-idl-file-support)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/15347-djinni-idl-file-support.svg)](https://plugins.jetbrains.com/plugin/15347-djinni-idl-file-support)
 
 <!-- Plugin description -->
 Adds basic navigation, code-completion and error highlighting support for `.djinni` IDL files.
