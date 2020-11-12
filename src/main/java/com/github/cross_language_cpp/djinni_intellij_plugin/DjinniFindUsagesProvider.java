@@ -61,6 +61,8 @@ public class DjinniFindUsagesProvider implements FindUsagesProvider {
       return "djinni " +((DjinniTypeDefinition)element).getDjinniType().toString().toLowerCase(Locale.US);
     } else if(element instanceof DjinniEnumValue) {
       return "djinni enum value";
+    } else if(element instanceof DjinniFlagsValue) {
+      return "djinni flags value";
     } else if(element instanceof DjinniConstNamedValue) {
       return "djinni const value";
     } else {

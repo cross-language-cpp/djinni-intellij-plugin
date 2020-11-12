@@ -42,6 +42,7 @@ public class DjinniAnnotator implements Annotator {
         Annotation annotation = holder.createErrorAnnotation(element, "Unresolved type");
         annotation.setNeedsUpdateOnTyping(true);
         annotation.registerFix(new DjinniCreateTypeDefinitionQuickFix(typeReference.getText(), DjinniPsiImplUtil.DjinniType.RECORD));
+        annotation.registerFix(new DjinniCreateTypeDefinitionQuickFix(typeReference.getText(), DjinniPsiImplUtil.DjinniType.FLAGS));
         annotation.registerFix(new DjinniCreateTypeDefinitionQuickFix(typeReference.getText(), DjinniPsiImplUtil.DjinniType.INTERFACE));
         annotation.registerFix(new DjinniCreateTypeDefinitionQuickFix(typeReference.getText(), DjinniPsiImplUtil.DjinniType.ENUM));
       }

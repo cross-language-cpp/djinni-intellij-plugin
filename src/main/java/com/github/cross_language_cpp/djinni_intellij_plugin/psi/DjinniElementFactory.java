@@ -69,6 +69,16 @@ public class DjinniElementFactory {
   }
 
   @Nullable
+  public static DjinniFlagsValue createFlagsValue(Project project, String name) {
+    DjinniFile djinniFile = createFile(project, "dummy = flags { " + name + "; }");
+    DjinniTypeDefinition typeDefinition = (DjinniTypeDefinition)djinniFile.getFirstChild();
+    if (typeDefinition.getDjinniType() == DjinniPsiImplUtil.DjinniType.FLAGS) {
+      return typeDefinition.getFlagsMemberList().get(0).getFlagsValue();
+    }
+    return null;
+  }
+
+  @Nullable
   public static DjinniConstNamedValue createConstNamedValue(Project project, String name) {
     DjinniFile djinniFile = createFile(project, "dummy = record { const " + name + ": i32 = 1; }");
     DjinniTypeDefinition typeDefinition = (DjinniTypeDefinition)djinniFile.getFirstChild();

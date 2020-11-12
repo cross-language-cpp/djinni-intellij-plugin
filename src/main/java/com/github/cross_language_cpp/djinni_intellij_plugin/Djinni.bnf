@@ -47,6 +47,7 @@
     space="regexp:\s+"
     comment="regexp:#.*"
     enum="enum"
+    flags="flags"
     record="record"
     eq_keyword="eq"
     ord="ord"
@@ -73,7 +74,7 @@ typeDefinition ::= identifier EQ typeDescription {
   methods=[getTypeName getDjinniType getName setName getNameIdentifier getPresentation]
 }
 
-private typeDescription ::= enumDescription | recordDescription | interfaceDescription
+private typeDescription ::= enumDescription | flagsDescription | recordDescription | interfaceDescription
 
 generator ::= (PLUS 'c') | (PLUS 'j') | (PLUS 'o')
 
@@ -86,6 +87,20 @@ enumTypeVariant ::= enum
 enumMember ::= enumValue SEMICOLON
 
 enumValue ::= identifier {
+  mixin="com.github.cross_language_cpp.djinni_intellij_plugin.psi.impl.DjinniReferenceImpl"
+  implements="com.github.cross_language_cpp.djinni_intellij_plugin.psi.DjinniNamedElement"
+  methods=[getName setName getNameIdentifier]
+}
+
+// flags.
+
+private flagsDescription ::= flagsTypeVariant LEFT_BLOCK_BRACE flagsMember* RIGHT_BLOCK_BRACE
+
+flagsTypeVariant ::= flags
+
+flagsMember ::= flagsValue SEMICOLON
+
+flagsValue ::= identifier {
   mixin="com.github.cross_language_cpp.djinni_intellij_plugin.psi.impl.DjinniReferenceImpl"
   implements="com.github.cross_language_cpp.djinni_intellij_plugin.psi.DjinniNamedElement"
   methods=[getName setName getNameIdentifier]

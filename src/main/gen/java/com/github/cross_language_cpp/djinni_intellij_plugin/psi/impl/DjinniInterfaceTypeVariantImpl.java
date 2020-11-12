@@ -13,7 +13,7 @@ import com.github.cross_language_cpp.djinni_intellij_plugin.psi.*;
 
 public class DjinniInterfaceTypeVariantImpl extends ASTWrapperPsiElement implements DjinniInterfaceTypeVariant {
 
-  public DjinniInterfaceTypeVariantImpl(ASTNode node) {
+  public DjinniInterfaceTypeVariantImpl(@NotNull ASTNode node) {
     super(node);
   }
 

@@ -5,6 +5,16 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface DjinniBasicType extends PsiElement {
+public interface DjinniFlagsValue extends DjinniNamedElement {
+
+  @NotNull
+  PsiElement getIdentifier();
+
+  String getName();
+
+  PsiElement setName(String newName);
+
+  @Nullable
+  PsiElement getNameIdentifier();
 
 }

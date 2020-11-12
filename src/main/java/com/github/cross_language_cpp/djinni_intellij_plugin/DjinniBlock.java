@@ -48,7 +48,7 @@ public class DjinniBlock extends AbstractBlock {
     this.spaceIndent = spaceIndent;
   }
 
-  static List<IElementType> memberTypes = Arrays.asList(DjinniTypes.ENUM_MEMBER, DjinniTypes.RECORD_MEMBER, DjinniTypes.INTERFACE_MEMBER, DjinniTypes.CONST_RECORD_MEMBER_ELEMENT);
+  static List<IElementType> memberTypes = Arrays.asList(DjinniTypes.ENUM_MEMBER, DjinniTypes.FLAGS_MEMBER, DjinniTypes.RECORD_MEMBER, DjinniTypes.INTERFACE_MEMBER, DjinniTypes.CONST_RECORD_MEMBER_ELEMENT);
 
   @Override
   protected List<Block> buildChildren() {

@@ -13,7 +13,7 @@ import com.github.cross_language_cpp.djinni_intellij_plugin.psi.*;
 
 public class DjinniEnumTypeVariantImpl extends ASTWrapperPsiElement implements DjinniEnumTypeVariant {
 
-  public DjinniEnumTypeVariantImpl(ASTNode node) {
+  public DjinniEnumTypeVariantImpl(@NotNull ASTNode node) {
     super(node);
   }
 

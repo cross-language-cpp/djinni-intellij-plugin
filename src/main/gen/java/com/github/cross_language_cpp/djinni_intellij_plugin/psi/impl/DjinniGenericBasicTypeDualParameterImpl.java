@@ -13,7 +13,7 @@ import com.github.cross_language_cpp.djinni_intellij_plugin.psi.*;
 
 public class DjinniGenericBasicTypeDualParameterImpl extends ASTWrapperPsiElement implements DjinniGenericBasicTypeDualParameter {
 
-  public DjinniGenericBasicTypeDualParameterImpl(ASTNode node) {
+  public DjinniGenericBasicTypeDualParameterImpl(@NotNull ASTNode node) {
     super(node);
   }
 

@@ -5,6 +5,12 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface DjinniBasicType extends PsiElement {
+public interface DjinniFlagsMember extends PsiElement {
+
+  @NotNull
+  DjinniFlagsValue getFlagsValue();
+
+  @NotNull
+  PsiElement getSemicolon();
 
 }

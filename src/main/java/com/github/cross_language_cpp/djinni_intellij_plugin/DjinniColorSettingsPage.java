@@ -55,50 +55,58 @@ public class DjinniColorSettingsPage implements ColorSettingsPage {
   @Override
   public String getDemoText() {
     return "# Multi-line comments can be added here. This comment will be propagated\n" +
-           "# to each generated definition.\n" +
-           "my_enum = enum {\n" +
-           "    option1;\n" +
-           "    option2;\n" +
-           "    option3;\n" +
-           "}\n" +
-           "\n" +
-           "my_record = record {\n" +
-           "    id: i32;\n" +
-           "    info: string;\n" +
-           "    store: set<string>;\n" +
-           "    hash: map<string, i32>;\n" +
-           "\n" +
-           "    values: list<another_record>;\n" +
-           "\n" +
-           "    # Comments can also be put here\n" +
-           "\n" +
-           "    # Constants can be included\n" +
-           "    const string_const: string = \"Constants can be put here\";\n" +
-           "    const min_value: another_record = {\n" +
-           "        key1 = 0,\n" +
-           "        key2 = \"\",\n" +
-           "    };\n" +
-           "}\n" +
-           "\n" +
-           "another_record = record {\n" +
-           "    key1: i32;\n" +
-           "    key2: string;\n" +
-           "} deriving (eq, ord)\n" +
-           "\n" +
-           "# This interface will be implemented in C++ and can be called from any language.\n" +
-           "my_cpp_interface = interface +c {\n" +
-           "    method_returning_nothing(value: i32);\n" +
-           "    method_returning_some_type(key: string): another_record;\n" +
-           "    static get_version(): i32;\n" +
-           "\n" +
-           "    # Interfaces can also have constants\n" +
-           "    const version: i32 = 1;\n" +
-           "}\n" +
-           "\n" +
-           "# This interface will be implemented in Java and ObjC and can be called from C++.\n" +
-           "my_client_interface = interface +j +o {\n" +
-           "    log_string(str: string): bool;\n" +
-           "}\n";
+            "# to each generated definition.\n" +
+            "my_enum = enum {\n" +
+            "    option1;\n" +
+            "    option2;\n" +
+            "    option3;\n" +
+            "}\n" +
+            "\n" +
+            "my_flags = flags {\n" +
+            "  flag1;\n" +
+            "  flag2;\n" +
+            "  flag3;\n" +
+            "  no_flags = none;\n" +
+            "  all_flags = all;\n" +
+            "}\n" +
+            "\n" +
+            "my_record = record {\n" +
+            "    id: i32;\n" +
+            "    info: string;\n" +
+            "    store: set<string>;\n" +
+            "    hash: map<string, i32>;\n" +
+            "\n" +
+            "    values: list<another_record>;\n" +
+            "\n" +
+            "    # Comments can also be put here\n" +
+            "\n" +
+            "    # Constants can be included\n" +
+            "    const string_const: string = \"Constants can be put here\";\n" +
+            "    const min_value: another_record = {\n" +
+            "        key1 = 0,\n" +
+            "        key2 = \"\"\n" +
+            "    };\n" +
+            "}\n" +
+            "\n" +
+            "another_record = record {\n" +
+            "    key1: i32;\n" +
+            "    key2: string;\n" +
+            "} deriving (eq, ord)\n" +
+            "\n" +
+            "# This interface will be implemented in C++ and can be called from any language.\n" +
+            "my_cpp_interface = interface +c {\n" +
+            "    method_returning_nothing(value: i32);\n" +
+            "    method_returning_some_type(key: string): another_record;\n" +
+            "    static get_version(): i32;\n" +
+            "\n" +
+            "    # Interfaces can also have constants\n" +
+            "    const version: i32 = 1;\n" +
+            "}\n" +
+            "\n" +
+            "# This interface will be implemented in Java and ObjC and can be called from C++.\n" +
+            "my_client_interface = interface +j +o {\n" +
+            "    log_string(str: string): bool;\n" +
+            "}";
   }
 
   @Nullable

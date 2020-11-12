@@ -13,7 +13,7 @@ import com.github.cross_language_cpp.djinni_intellij_plugin.psi.*;
 
 public class DjinniGeneratorImpl extends ASTWrapperPsiElement implements DjinniGenerator {
 
-  public DjinniGeneratorImpl(ASTNode node) {
+  public DjinniGeneratorImpl(@NotNull ASTNode node) {
     super(node);
   }
 

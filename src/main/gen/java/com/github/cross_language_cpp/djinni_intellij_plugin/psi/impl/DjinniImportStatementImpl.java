@@ -44,19 +44,23 @@ public class DjinniImportStatementImpl extends DjinniImportStatementBaseImpl imp
     return findNotNullChildByType(STRING_LITERAL);
   }
 
+  @Override
   @NotNull
   public String getName() {
     return DjinniPsiImplUtil.getName(this);
   }
 
+  @Override
   public PsiElement setName(String newName) {
     return DjinniPsiImplUtil.setName(this, newName);
   }
 
+  @Override
   public TextRange getRangeOfPath() {
     return DjinniPsiImplUtil.getRangeOfPath(this);
   }
 
+  @Override
   @NotNull
   public String getPath() {
     return DjinniPsiImplUtil.getPath(this);

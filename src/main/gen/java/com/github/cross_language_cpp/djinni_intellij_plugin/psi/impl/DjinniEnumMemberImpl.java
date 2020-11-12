@@ -13,7 +13,7 @@ import com.github.cross_language_cpp.djinni_intellij_plugin.psi.*;
 
 public class DjinniEnumMemberImpl extends ASTWrapperPsiElement implements DjinniEnumMember {
 
-  public DjinniEnumMemberImpl(ASTNode node) {
+  public DjinniEnumMemberImpl(@NotNull ASTNode node) {
     super(node);
   }
 

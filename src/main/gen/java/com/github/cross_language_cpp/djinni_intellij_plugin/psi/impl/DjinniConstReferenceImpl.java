@@ -31,14 +31,17 @@ public class DjinniConstReferenceImpl extends DjinniReferenceImpl implements Dji
     return findNotNullChildByType(IDENTIFIER);
   }
 
+  @Override
   public String getName() {
     return DjinniPsiImplUtil.getName(this);
   }
 
+  @Override
   public PsiElement setName(String newName) {
     return DjinniPsiImplUtil.setName(this, newName);
   }
 
+  @Override
   @Nullable
   public PsiElement getNameIdentifier() {
     return DjinniPsiImplUtil.getNameIdentifier(this);

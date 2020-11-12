@@ -8,17 +8,16 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static com.github.cross_language_cpp.djinni_intellij_plugin.psi.DjinniTypes.*;
-import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.github.cross_language_cpp.djinni_intellij_plugin.psi.*;
 
-public class DjinniRecordMemberImpl extends ASTWrapperPsiElement implements DjinniRecordMember {
+public class DjinniFlagsValueImpl extends DjinniReferenceImpl implements DjinniFlagsValue {
 
-  public DjinniRecordMemberImpl(@NotNull ASTNode node) {
+  public DjinniFlagsValueImpl(ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull DjinniVisitor visitor) {
-    visitor.visitRecordMember(this);
+    visitor.visitFlagsValue(this);
   }
 
   public void accept(@NotNull PsiElementVisitor visitor) {
@@ -27,15 +26,25 @@ public class DjinniRecordMemberImpl extends ASTWrapperPsiElement implements Djin
   }
 
   @Override
-  @Nullable
-  public DjinniConstMember getConstMember() {
-    return findChildByClass(DjinniConstMember.class);
+  @NotNull
+  public PsiElement getIdentifier() {
+    return findNotNullChildByType(IDENTIFIER);
+  }
+
+  @Override
+  public String getName() {
+    return DjinniPsiImplUtil.getName(this);
+  }
+
+  @Override
+  public PsiElement setName(String newName) {
+    return DjinniPsiImplUtil.setName(this, newName);
   }
 
   @Override
   @Nullable
-  public DjinniRecordMemberVariable getRecordMemberVariable() {
-    return findChildByClass(DjinniRecordMemberVariable.class);
+  public PsiElement getNameIdentifier() {
+    return DjinniPsiImplUtil.getNameIdentifier(this);
   }
 
 }

@@ -13,7 +13,7 @@ import com.github.cross_language_cpp.djinni_intellij_plugin.psi.*;
 
 public class DjinniRecordTypeVariantImpl extends ASTWrapperPsiElement implements DjinniRecordTypeVariant {
 
-  public DjinniRecordTypeVariantImpl(ASTNode node) {
+  public DjinniRecordTypeVariantImpl(@NotNull ASTNode node) {
     super(node);
   }
 

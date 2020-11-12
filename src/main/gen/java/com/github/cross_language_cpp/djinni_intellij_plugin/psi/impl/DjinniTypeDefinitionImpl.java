@@ -14,7 +14,7 @@ import com.intellij.navigation.ItemPresentation;
 
 public class DjinniTypeDefinitionImpl extends DjinniNamedElementImpl implements DjinniTypeDefinition {
 
-  public DjinniTypeDefinitionImpl(ASTNode node) {
+  public DjinniTypeDefinitionImpl(@NotNull ASTNode node) {
     super(node);
   }
 
@@ -43,6 +43,18 @@ public class DjinniTypeDefinitionImpl extends DjinniNamedElementImpl implements 
   @Nullable
   public DjinniEnumTypeVariant getEnumTypeVariant() {
     return findChildByClass(DjinniEnumTypeVariant.class);
+  }
+
+  @Override
+  @NotNull
+  public List<DjinniFlagsMember> getFlagsMemberList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, DjinniFlagsMember.class);
+  }
+
+  @Override
+  @Nullable
+  public DjinniFlagsTypeVariant getFlagsTypeVariant() {
+    return findChildByClass(DjinniFlagsTypeVariant.class);
   }
 
   @Override
@@ -105,28 +117,34 @@ public class DjinniTypeDefinitionImpl extends DjinniNamedElementImpl implements 
     return findNotNullChildByType(IDENTIFIER);
   }
 
+  @Override
   public String getTypeName() {
     return DjinniPsiImplUtil.getTypeName(this);
   }
 
+  @Override
   @NotNull
   public DjinniType getDjinniType() {
     return DjinniPsiImplUtil.getDjinniType(this);
   }
 
+  @Override
   public String getName() {
     return DjinniPsiImplUtil.getName(this);
   }
 
+  @Override
   public PsiElement setName(String newName) {
     return DjinniPsiImplUtil.setName(this, newName);
   }
 
+  @Override
   @Nullable
   public PsiElement getNameIdentifier() {
     return DjinniPsiImplUtil.getNameIdentifier(this);
   }
 
+  @Override
   public ItemPresentation getPresentation() {
     return DjinniPsiImplUtil.getPresentation(this);
   }

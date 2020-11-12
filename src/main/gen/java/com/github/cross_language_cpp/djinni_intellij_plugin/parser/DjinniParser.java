@@ -23,97 +23,15 @@ public class DjinniParser implements PsiParser, LightPsiParser {
     boolean r;
     b = adapt_builder_(t, b, this, null);
     Marker m = enter_section_(b, 0, _COLLAPSE_, null);
-    if (t == BASIC_TYPE) {
-      r = basicType(b, 0);
-    }
-    else if (t == CONST_MEMBER) {
-      r = constMember(b, 0);
-    }
-    else if (t == CONST_NAMED_VALUE) {
-      r = constNamedValue(b, 0);
-    }
-    else if (t == CONST_RECORD_MEMBER_ELEMENT) {
-      r = constRecordMemberElement(b, 0);
-    }
-    else if (t == CONST_REFERENCE) {
-      r = constReference(b, 0);
-    }
-    else if (t == CONST_VALUE) {
-      r = constValue(b, 0);
-    }
-    else if (t == DERIVING_PARAM) {
-      r = derivingParam(b, 0);
-    }
-    else if (t == DERIVING_PARAM_LIST) {
-      r = derivingParamList(b, 0);
-    }
-    else if (t == ENUM_MEMBER) {
-      r = enumMember(b, 0);
-    }
-    else if (t == ENUM_TYPE_VARIANT) {
-      r = enumTypeVariant(b, 0);
-    }
-    else if (t == ENUM_VALUE) {
-      r = enumValue(b, 0);
-    }
-    else if (t == EXTERN_STATEMENT) {
-      r = externStatement(b, 0);
-    }
-    else if (t == GENERATOR) {
-      r = generator(b, 0);
-    }
-    else if (t == GENERIC_BASIC_TYPE) {
-      r = genericBasicType(b, 0);
-    }
-    else if (t == GENERIC_BASIC_TYPE_DUAL_PARAMETER) {
-      r = genericBasicTypeDualParameter(b, 0);
-    }
-    else if (t == GENERIC_BASIC_TYPE_SINGLE_PARAMETER) {
-      r = genericBasicTypeSingleParameter(b, 0);
-    }
-    else if (t == IMPORT_STATEMENT) {
-      r = importStatement(b, 0);
-    }
-    else if (t == INTERFACE_FUNCTION_PARAM) {
-      r = interfaceFunctionParam(b, 0);
-    }
-    else if (t == INTERFACE_FUNCTION_PARAM_LIST) {
-      r = interfaceFunctionParamList(b, 0);
-    }
-    else if (t == INTERFACE_MEMBER) {
-      r = interfaceMember(b, 0);
-    }
-    else if (t == INTERFACE_MEMBER_FUNCTION) {
-      r = interfaceMemberFunction(b, 0);
-    }
-    else if (t == INTERFACE_TYPE_VARIANT) {
-      r = interfaceTypeVariant(b, 0);
-    }
-    else if (t == PREDEFINED_TYPE) {
-      r = predefinedType(b, 0);
-    }
-    else if (t == RECORD_MEMBER) {
-      r = recordMember(b, 0);
-    }
-    else if (t == RECORD_MEMBER_VARIABLE) {
-      r = recordMemberVariable(b, 0);
-    }
-    else if (t == RECORD_TYPE_VARIANT) {
-      r = recordTypeVariant(b, 0);
-    }
-    else if (t == TYPE_DEFINITION) {
-      r = typeDefinition(b, 0);
-    }
-    else if (t == TYPE_REFERENCE) {
-      r = typeReference(b, 0);
-    }
-    else {
-      r = parse_root_(t, b, 0);
-    }
+    r = parse_root_(t, b);
     exit_section_(b, 0, m, t, r, true, TRUE_CONDITION);
   }
 
-  protected boolean parse_root_(IElementType t, PsiBuilder b, int l) {
+  protected boolean parse_root_(IElementType t, PsiBuilder b) {
+    return parse_root_(t, b, 0);
+  }
+
+  static boolean parse_root_(IElementType t, PsiBuilder b, int l) {
     return djinniFile(b, l + 1);
   }
 
@@ -305,11 +223,10 @@ public class DjinniParser implements PsiParser, LightPsiParser {
   // item_*
   static boolean djinniFile(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "djinniFile")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!item_(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "djinniFile", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -332,11 +249,10 @@ public class DjinniParser implements PsiParser, LightPsiParser {
   // enumMember*
   private static boolean enumDescription_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "enumDescription_2")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!enumMember(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "enumDescription_2", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -387,6 +303,69 @@ public class DjinniParser implements PsiParser, LightPsiParser {
     Marker m = enter_section_(b);
     r = consumeTokens(b, 0, AT, EXTERN, STRING_LITERAL);
     exit_section_(b, m, EXTERN_STATEMENT, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // flagsTypeVariant LEFT_BLOCK_BRACE flagsMember* RIGHT_BLOCK_BRACE
+  static boolean flagsDescription(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "flagsDescription")) return false;
+    if (!nextTokenIs(b, FLAGS)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = flagsTypeVariant(b, l + 1);
+    r = r && consumeToken(b, LEFT_BLOCK_BRACE);
+    r = r && flagsDescription_2(b, l + 1);
+    r = r && consumeToken(b, RIGHT_BLOCK_BRACE);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // flagsMember*
+  private static boolean flagsDescription_2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "flagsDescription_2")) return false;
+    while (true) {
+      int c = current_position_(b);
+      if (!flagsMember(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "flagsDescription_2", c)) break;
+    }
+    return true;
+  }
+
+  /* ********************************************************** */
+  // flagsValue SEMICOLON
+  public static boolean flagsMember(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "flagsMember")) return false;
+    if (!nextTokenIs(b, IDENTIFIER)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = flagsValue(b, l + 1);
+    r = r && consumeToken(b, SEMICOLON);
+    exit_section_(b, m, FLAGS_MEMBER, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // flags
+  public static boolean flagsTypeVariant(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "flagsTypeVariant")) return false;
+    if (!nextTokenIs(b, FLAGS)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, FLAGS);
+    exit_section_(b, m, FLAGS_TYPE_VARIANT, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // identifier
+  public static boolean flagsValue(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "flagsValue")) return false;
+    if (!nextTokenIs(b, IDENTIFIER)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, IDENTIFIER);
+    exit_section_(b, m, FLAGS_VALUE, r);
     return r;
   }
 
@@ -484,11 +463,9 @@ public class DjinniParser implements PsiParser, LightPsiParser {
   private static boolean genericBasicTypeSingleParameter_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "genericBasicTypeSingleParameter_0")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = consumeToken(b, LIST);
     if (!r) r = consumeToken(b, SET);
     if (!r) r = consumeToken(b, OPTIONAL);
-    exit_section_(b, m, null, r);
     return r;
   }
 
@@ -532,11 +509,10 @@ public class DjinniParser implements PsiParser, LightPsiParser {
   // interfaceMember*
   private static boolean interfaceDescription_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "interfaceDescription_2")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!interfaceMember(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "interfaceDescription_2", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -656,11 +632,10 @@ public class DjinniParser implements PsiParser, LightPsiParser {
   // generator*
   private static boolean interfaceTypeVariant_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "interfaceTypeVariant_1")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!generator(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "interfaceTypeVariant_1", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -671,11 +646,9 @@ public class DjinniParser implements PsiParser, LightPsiParser {
     if (!recursion_guard_(b, l, "item_")) return false;
     if (!nextTokenIs(b, "", AT, IDENTIFIER)) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = importStatement(b, l + 1);
     if (!r) r = externStatement(b, l + 1);
     if (!r) r = typeDefinition(b, l + 1);
-    exit_section_(b, m, null, r);
     return r;
   }
 
@@ -710,11 +683,10 @@ public class DjinniParser implements PsiParser, LightPsiParser {
   // recordMember*
   private static boolean recordDescription_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "recordDescription_2")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!recordMember(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "recordDescription_2", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -782,11 +754,10 @@ public class DjinniParser implements PsiParser, LightPsiParser {
   // generator*
   private static boolean recordTypeVariant_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "recordTypeVariant_1")) return false;
-    int c = current_position_(b);
     while (true) {
+      int c = current_position_(b);
       if (!generator(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "recordTypeVariant_1", c)) break;
-      c = current_position_(b);
     }
     return true;
   }
@@ -805,15 +776,14 @@ public class DjinniParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // enumDescription | recordDescription | interfaceDescription
+  // enumDescription | flagsDescription | recordDescription | interfaceDescription
   static boolean typeDescription(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "typeDescription")) return false;
     boolean r;
-    Marker m = enter_section_(b);
     r = enumDescription(b, l + 1);
+    if (!r) r = flagsDescription(b, l + 1);
     if (!r) r = recordDescription(b, l + 1);
     if (!r) r = interfaceDescription(b, l + 1);
-    exit_section_(b, m, null, r);
     return r;
   }
 

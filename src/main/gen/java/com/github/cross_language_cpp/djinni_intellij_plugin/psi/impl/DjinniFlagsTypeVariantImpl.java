@@ -11,14 +11,14 @@ import static com.github.cross_language_cpp.djinni_intellij_plugin.psi.DjinniTyp
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.github.cross_language_cpp.djinni_intellij_plugin.psi.*;
 
-public class DjinniRecordMemberImpl extends ASTWrapperPsiElement implements DjinniRecordMember {
+public class DjinniFlagsTypeVariantImpl extends ASTWrapperPsiElement implements DjinniFlagsTypeVariant {
 
-  public DjinniRecordMemberImpl(@NotNull ASTNode node) {
+  public DjinniFlagsTypeVariantImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull DjinniVisitor visitor) {
-    visitor.visitRecordMember(this);
+    visitor.visitFlagsTypeVariant(this);
   }
 
   public void accept(@NotNull PsiElementVisitor visitor) {
@@ -27,15 +27,9 @@ public class DjinniRecordMemberImpl extends ASTWrapperPsiElement implements Djin
   }
 
   @Override
-  @Nullable
-  public DjinniConstMember getConstMember() {
-    return findChildByClass(DjinniConstMember.class);
-  }
-
-  @Override
-  @Nullable
-  public DjinniRecordMemberVariable getRecordMemberVariable() {
-    return findChildByClass(DjinniRecordMemberVariable.class);
+  @NotNull
+  public PsiElement getFlags() {
+    return findNotNullChildByType(FLAGS);
   }
 
 }

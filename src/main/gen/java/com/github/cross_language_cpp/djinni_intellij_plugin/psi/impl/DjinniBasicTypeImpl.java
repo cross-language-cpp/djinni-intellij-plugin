@@ -13,7 +13,7 @@ import com.github.cross_language_cpp.djinni_intellij_plugin.psi.*;
 
 public class DjinniBasicTypeImpl extends ASTWrapperPsiElement implements DjinniBasicType {
 
-  public DjinniBasicTypeImpl(ASTNode node) {
+  public DjinniBasicTypeImpl(@NotNull ASTNode node) {
     super(node);
   }
 

@@ -56,6 +56,18 @@ public class DjinniVisitor extends PsiElementVisitor {
     visitPsiNamedElement(o);
   }
 
+  public void visitFlagsMember(@NotNull DjinniFlagsMember o) {
+    visitPsiElement(o);
+  }
+
+  public void visitFlagsTypeVariant(@NotNull DjinniFlagsTypeVariant o) {
+    visitPsiElement(o);
+  }
+
+  public void visitFlagsValue(@NotNull DjinniFlagsValue o) {
+    visitNamedElement(o);
+  }
+
   public void visitGenerator(@NotNull DjinniGenerator o) {
     visitPsiElement(o);
   }
