@@ -33,9 +33,27 @@ public class DjinniFlagsMemberImpl extends ASTWrapperPsiElement implements Djinn
   }
 
   @Override
+  @Nullable
+  public PsiElement getEq() {
+    return findChildByType(EQ);
+  }
+
+  @Override
   @NotNull
   public PsiElement getSemicolon() {
     return findNotNullChildByType(SEMICOLON);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getAll() {
+    return findChildByType(ALL);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getNone() {
+    return findChildByType(NONE);
   }
 
 }

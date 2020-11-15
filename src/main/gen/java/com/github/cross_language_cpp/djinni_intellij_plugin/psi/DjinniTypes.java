@@ -40,6 +40,7 @@ public interface DjinniTypes {
   IElementType TYPE_DEFINITION = new DjinniElementType("TYPE_DEFINITION");
   IElementType TYPE_REFERENCE = new DjinniElementType("TYPE_REFERENCE");
 
+  IElementType ALL = new DjinniTokenType("all");
   IElementType AT = new DjinniTokenType("@");
   IElementType COLON = new DjinniTokenType(":");
   IElementType COMMENT = new DjinniTokenType("comment");
@@ -58,6 +59,7 @@ public interface DjinniTypes {
   IElementType LIST = new DjinniTokenType("list");
   IElementType LIST_SEPARATOR = new DjinniTokenType(",");
   IElementType MAP = new DjinniTokenType("map");
+  IElementType NONE = new DjinniTokenType("none");
   IElementType NUMBER_LITERAL = new DjinniTokenType("number_literal");
   IElementType OPTIONAL = new DjinniTokenType("optional");
   IElementType ORD = new DjinniTokenType("ord");
