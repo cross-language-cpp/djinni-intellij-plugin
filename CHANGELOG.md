@@ -3,6 +3,10 @@
 # djinni-intellij-plugin Changelog
 
 ## [Unreleased]
+### Fixed
+- problem with new `flags` support: `all` and `none` must not interpreted as language keywords.
+
+## [0.10.0]
 ### Added
 - support for the `flags` data structure
 

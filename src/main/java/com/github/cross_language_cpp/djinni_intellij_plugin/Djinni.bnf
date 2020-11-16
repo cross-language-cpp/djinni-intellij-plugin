@@ -49,8 +49,6 @@
     comment="regexp:#.*"
     enum="enum"
     flags="flags"
-    all="all"
-    none="none"
     record="record"
     eq_keyword="eq"
     ord="ord"
@@ -101,7 +99,7 @@ private flagsDescription ::= flagsTypeVariant LEFT_BLOCK_BRACE flagsMember* RIGH
 
 flagsTypeVariant ::= flags
 
-flagsMember ::= flagsValue [ EQ ( all | none ) ] SEMICOLON
+flagsMember ::= flagsValue [ EQ ( 'all' | 'none' ) ] SEMICOLON
 
 flagsValue ::= identifier {
   mixin="com.github.cross_language_cpp.djinni_intellij_plugin.psi.impl.DjinniReferenceImpl"

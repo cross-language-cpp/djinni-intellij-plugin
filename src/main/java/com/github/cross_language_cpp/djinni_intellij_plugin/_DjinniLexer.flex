@@ -50,8 +50,6 @@ TEXT=[a-zA-Z_0-9]+
   "@"                   { return AT; }
   "enum"                { return ENUM; }
   "flags"               { return FLAGS; }
-  "all"                 { return ALL; }
-  "none"                { return NONE; }
   "record"              { return RECORD; }
   "eq"                  { return EQ_KEYWORD; }
   "ord"                 { return ORD; }

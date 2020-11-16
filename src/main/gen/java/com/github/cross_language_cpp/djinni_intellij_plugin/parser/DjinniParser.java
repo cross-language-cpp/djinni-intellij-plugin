@@ -333,7 +333,7 @@ public class DjinniParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // flagsValue [ EQ ( all | none ) ] SEMICOLON
+  // flagsValue [ EQ ( 'all' | 'none' ) ] SEMICOLON
   public static boolean flagsMember(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "flagsMember")) return false;
     if (!nextTokenIs(b, IDENTIFIER)) return false;
@@ -346,14 +346,14 @@ public class DjinniParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // [ EQ ( all | none ) ]
+  // [ EQ ( 'all' | 'none' ) ]
   private static boolean flagsMember_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "flagsMember_1")) return false;
     flagsMember_1_0(b, l + 1);
     return true;
   }
 
-  // EQ ( all | none )
+  // EQ ( 'all' | 'none' )
   private static boolean flagsMember_1_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "flagsMember_1_0")) return false;
     boolean r;
@@ -364,12 +364,12 @@ public class DjinniParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // all | none
+  // 'all' | 'none'
   private static boolean flagsMember_1_0_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "flagsMember_1_0_1")) return false;
     boolean r;
-    r = consumeToken(b, ALL);
-    if (!r) r = consumeToken(b, NONE);
+    r = consumeToken(b, "all");
+    if (!r) r = consumeToken(b, "none");
     return r;
   }
 
