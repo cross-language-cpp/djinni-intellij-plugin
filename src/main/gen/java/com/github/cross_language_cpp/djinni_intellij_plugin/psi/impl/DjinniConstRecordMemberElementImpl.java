@@ -13,7 +13,7 @@ import com.github.cross_language_cpp.djinni_intellij_plugin.psi.*;
 
 public class DjinniConstRecordMemberElementImpl extends ASTWrapperPsiElement implements DjinniConstRecordMemberElement {
 
-  public DjinniConstRecordMemberElementImpl(ASTNode node) {
+  public DjinniConstRecordMemberElementImpl(@NotNull ASTNode node) {
     super(node);
   }
 

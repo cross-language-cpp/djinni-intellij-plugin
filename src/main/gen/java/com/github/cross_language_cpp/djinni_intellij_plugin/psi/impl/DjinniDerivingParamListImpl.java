@@ -13,7 +13,7 @@ import com.github.cross_language_cpp.djinni_intellij_plugin.psi.*;
 
 public class DjinniDerivingParamListImpl extends ASTWrapperPsiElement implements DjinniDerivingParamList {
 
-  public DjinniDerivingParamListImpl(ASTNode node) {
+  public DjinniDerivingParamListImpl(@NotNull ASTNode node) {
     super(node);
   }
 

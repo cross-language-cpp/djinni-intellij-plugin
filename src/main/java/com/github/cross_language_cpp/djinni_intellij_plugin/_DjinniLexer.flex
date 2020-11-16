@@ -1,24 +1,14 @@
 package com.github.cross_language_cpp.djinni_intellij_plugin;
-import com.intellij.lexer.*;
+
+import com.intellij.lexer.FlexLexer;
 import com.intellij.psi.tree.IElementType;
+
+import static com.intellij.psi.TokenType.BAD_CHARACTER;
+import static com.intellij.psi.TokenType.WHITE_SPACE;
 import static com.github.cross_language_cpp.djinni_intellij_plugin.psi.DjinniTypes.*;
 
 %%
-/*
- * Copyright 2015 Dropbox, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+
 %{
   public _DjinniLexer() {
     this((java.io.Reader)null);
@@ -32,9 +22,8 @@ import static com.github.cross_language_cpp.djinni_intellij_plugin.psi.DjinniTyp
 %type IElementType
 %unicode
 
-EOL="\r"|"\n"|"\r\n"
-LINE_WS=[\ \t\f]
-WHITE_SPACE=({LINE_WS}|{EOL})+
+EOL=\R
+WHITE_SPACE=\s+
 
 SPACE=[ \t\n\x0B\f\r]+
 COMMENT=#.*
@@ -45,7 +34,7 @@ TEXT=[a-zA-Z_0-9]+
 
 %%
 <YYINITIAL> {
-  {WHITE_SPACE}         { return com.intellij.psi.TokenType.WHITE_SPACE; }
+  {WHITE_SPACE}         { return WHITE_SPACE; }
 
   "="                   { return EQ; }
   ":"                   { return COLON; }
@@ -59,16 +48,22 @@ TEXT=[a-zA-Z_0-9]+
   "("                   { return LEFT_PARAM_BRACE; }
   ")"                   { return RIGHT_PARAM_BRACE; }
   "@"                   { return AT; }
-  "list"                { return LIST; }
-  "set"                 { return SET; }
-  "optional"            { return OPTIONAL; }
-  "map"                 { return MAP; }
   "enum"                { return ENUM; }
+  "flags"               { return FLAGS; }
+  "all"                 { return ALL; }
+  "none"                { return NONE; }
   "record"              { return RECORD; }
   "eq"                  { return EQ_KEYWORD; }
   "ord"                 { return ORD; }
   "interface"           { return INTERFACE; }
   "static"              { return STATIC; }
+  "const"               { return CONST; }
+  "extern"              { return EXTERN; }
+  "import"              { return IMPORT; }
+  "list"                { return LIST; }
+  "set"                 { return SET; }
+  "optional"            { return OPTIONAL; }
+  "map"                 { return MAP; }
 
   {SPACE}               { return SPACE; }
   {COMMENT}             { return COMMENT; }
@@ -77,5 +72,6 @@ TEXT=[a-zA-Z_0-9]+
   {IDENTIFIER}          { return IDENTIFIER; }
   {TEXT}                { return TEXT; }
 
-  [^] { return com.intellij.psi.TokenType.BAD_CHARACTER; }
 }
+
+[^] { return BAD_CHARACTER; }

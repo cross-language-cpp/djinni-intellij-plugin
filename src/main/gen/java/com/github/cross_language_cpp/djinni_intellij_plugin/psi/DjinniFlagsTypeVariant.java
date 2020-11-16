@@ -5,6 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface DjinniBasicType extends PsiElement {
+public interface DjinniFlagsTypeVariant extends PsiElement {
+
+  @NotNull
+  PsiElement getFlags();
 
 }

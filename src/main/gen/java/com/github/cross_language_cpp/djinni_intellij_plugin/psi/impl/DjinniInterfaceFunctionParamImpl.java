@@ -13,7 +13,7 @@ import com.github.cross_language_cpp.djinni_intellij_plugin.psi.*;
 
 public class DjinniInterfaceFunctionParamImpl extends ASTWrapperPsiElement implements DjinniInterfaceFunctionParam {
 
-  public DjinniInterfaceFunctionParamImpl(ASTNode node) {
+  public DjinniInterfaceFunctionParamImpl(@NotNull ASTNode node) {
     super(node);
   }
 

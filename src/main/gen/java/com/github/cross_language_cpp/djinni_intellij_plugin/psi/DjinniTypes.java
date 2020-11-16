@@ -20,6 +20,9 @@ public interface DjinniTypes {
   IElementType ENUM_TYPE_VARIANT = new DjinniElementType("ENUM_TYPE_VARIANT");
   IElementType ENUM_VALUE = new DjinniElementType("ENUM_VALUE");
   IElementType EXTERN_STATEMENT = new DjinniElementType("EXTERN_STATEMENT");
+  IElementType FLAGS_MEMBER = new DjinniElementType("FLAGS_MEMBER");
+  IElementType FLAGS_TYPE_VARIANT = new DjinniElementType("FLAGS_TYPE_VARIANT");
+  IElementType FLAGS_VALUE = new DjinniElementType("FLAGS_VALUE");
   IElementType GENERATOR = new DjinniElementType("GENERATOR");
   IElementType GENERIC_BASIC_TYPE = new DjinniElementType("GENERIC_BASIC_TYPE");
   IElementType GENERIC_BASIC_TYPE_DUAL_PARAMETER = new DjinniElementType("GENERIC_BASIC_TYPE_DUAL_PARAMETER");
@@ -37,6 +40,7 @@ public interface DjinniTypes {
   IElementType TYPE_DEFINITION = new DjinniElementType("TYPE_DEFINITION");
   IElementType TYPE_REFERENCE = new DjinniElementType("TYPE_REFERENCE");
 
+  IElementType ALL = new DjinniTokenType("all");
   IElementType AT = new DjinniTokenType("@");
   IElementType COLON = new DjinniTokenType(":");
   IElementType COMMENT = new DjinniTokenType("comment");
@@ -45,6 +49,7 @@ public interface DjinniTypes {
   IElementType EQ = new DjinniTokenType("=");
   IElementType EQ_KEYWORD = new DjinniTokenType("eq");
   IElementType EXTERN = new DjinniTokenType("extern");
+  IElementType FLAGS = new DjinniTokenType("flags");
   IElementType IDENTIFIER = new DjinniTokenType("identifier");
   IElementType IMPORT = new DjinniTokenType("import");
   IElementType INTERFACE = new DjinniTokenType("interface");
@@ -54,6 +59,7 @@ public interface DjinniTypes {
   IElementType LIST = new DjinniTokenType("list");
   IElementType LIST_SEPARATOR = new DjinniTokenType(",");
   IElementType MAP = new DjinniTokenType("map");
+  IElementType NONE = new DjinniTokenType("none");
   IElementType NUMBER_LITERAL = new DjinniTokenType("number_literal");
   IElementType OPTIONAL = new DjinniTokenType("optional");
   IElementType ORD = new DjinniTokenType("ord");
@@ -72,7 +78,7 @@ public interface DjinniTypes {
   class Factory {
     public static PsiElement createElement(ASTNode node) {
       IElementType type = node.getElementType();
-       if (type == BASIC_TYPE) {
+      if (type == BASIC_TYPE) {
         return new DjinniBasicTypeImpl(node);
       }
       else if (type == CONST_MEMBER) {
@@ -107,6 +113,15 @@ public interface DjinniTypes {
       }
       else if (type == EXTERN_STATEMENT) {
         return new DjinniExternStatementImpl(node);
+      }
+      else if (type == FLAGS_MEMBER) {
+        return new DjinniFlagsMemberImpl(node);
+      }
+      else if (type == FLAGS_TYPE_VARIANT) {
+        return new DjinniFlagsTypeVariantImpl(node);
+      }
+      else if (type == FLAGS_VALUE) {
+        return new DjinniFlagsValueImpl(node);
       }
       else if (type == GENERATOR) {
         return new DjinniGeneratorImpl(node);

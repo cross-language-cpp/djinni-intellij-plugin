@@ -23,22 +23,7 @@ Djinni is a tool for generating cross-language type declarations and interface b
   <kbd>Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
 
 ## Plugin development
-### Build
-To build on your local machine, run the `buildPlugin` task
-
-```bash
-./gradlew buildPlugin
-```
-
-### Debug
-With the `runIde` task you can run the plugin in an isolated IDE and get logs about whats going on.
-
-### Install
-To install the plugin you just built locally, go to
-
-<kbd>Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>⚙</kbd> > <kbd>Install plugin from disk...</kbd>
-
-You can find the built plugin package under `build/distributions/djinni-intellij-plugin-<version>.zip`
+If you want to make changes to the plugin, read the [Developer Guide](./doc/developer_guide.md)
 
 ---
 Plugin based on the [IntelliJ Platform Plugin Template][template].

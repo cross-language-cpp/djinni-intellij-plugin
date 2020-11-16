@@ -13,7 +13,7 @@ import com.github.cross_language_cpp.djinni_intellij_plugin.psi.*;
 
 public class DjinniConstValueImpl extends ASTWrapperPsiElement implements DjinniConstValue {
 
-  public DjinniConstValueImpl(ASTNode node) {
+  public DjinniConstValueImpl(@NotNull ASTNode node) {
     super(node);
   }
 

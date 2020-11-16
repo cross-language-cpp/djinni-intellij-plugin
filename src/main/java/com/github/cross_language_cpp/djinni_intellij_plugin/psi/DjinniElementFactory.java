@@ -1,5 +1,6 @@
 /*
  * Copyright 2015 Dropbox, Inc.
+ * Copyright 2020 cross-language-cpp
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -64,6 +65,16 @@ public class DjinniElementFactory {
     DjinniTypeDefinition typeDefinition = (DjinniTypeDefinition)djinniFile.getFirstChild();
     if (typeDefinition.getDjinniType() == DjinniPsiImplUtil.DjinniType.ENUM) {
       return typeDefinition.getEnumMemberList().get(0).getEnumValue();
+    }
+    return null;
+  }
+
+  @Nullable
+  public static DjinniFlagsValue createFlagsValue(Project project, String name) {
+    DjinniFile djinniFile = createFile(project, "dummy = flags { " + name + "; }");
+    DjinniTypeDefinition typeDefinition = (DjinniTypeDefinition)djinniFile.getFirstChild();
+    if (typeDefinition.getDjinniType() == DjinniPsiImplUtil.DjinniType.FLAGS) {
+      return typeDefinition.getFlagsMemberList().get(0).getFlagsValue();
     }
     return null;
   }

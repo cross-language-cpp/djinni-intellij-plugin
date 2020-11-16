@@ -1,5 +1,6 @@
 /*
  * Copyright 2015 Dropbox, Inc.
+ * Copyright 2020 cross-language-cpp
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,7 +33,7 @@ import javax.swing.*;
  */
 public class DjinniPsiImplUtil {
   public enum DjinniType {
-    ENUM,RECORD,INTERFACE
+    ENUM,FLAGS,RECORD,INTERFACE
   }
   public static String getTypeName(DjinniTypeDefinition typeDefinition) {
     return typeDefinition.getIdentifier().getText();
@@ -44,6 +45,8 @@ public class DjinniPsiImplUtil {
       return DjinniType.RECORD;
     } else if(typeDefinition.getInterfaceTypeVariant() != null) {
       return DjinniType.INTERFACE;
+    } else if(typeDefinition.getFlagsTypeVariant() != null) {
+      return DjinniType.FLAGS;
     } else {
       return DjinniType.ENUM;
     }
@@ -217,6 +220,37 @@ public class DjinniPsiImplUtil {
   @Nullable
   public static PsiElement getNameIdentifier(DjinniEnumValue enumValue) {
     PsiElement identifier = enumValue.getIdentifier();
+    ASTNode nameNode = identifier.getNode();
+    if (nameNode != null) {
+      return nameNode.getPsi();
+    } else {
+      return null;
+    }
+  }
+
+
+
+  public static String getName(DjinniFlagsValue flagsValue) {
+    return flagsValue.getText();
+  }
+
+  public static PsiElement setName(DjinniFlagsValue flagsValue, String newName) {
+    PsiElement identifier = flagsValue.getIdentifier();
+    ASTNode node = identifier.getNode();
+    if (node != null) {
+      DjinniFlagsValue newValue = DjinniElementFactory.createFlagsValue(flagsValue.getProject(), newName);
+      if (newValue != null) {
+        PsiElement newIdentifier = newValue.getIdentifier();
+        ASTNode newIdentifierNode = newIdentifier.getNode();
+        flagsValue.getNode().replaceChild(node, newIdentifierNode);
+      }
+    }
+    return flagsValue;
+  }
+
+  @Nullable
+  public static PsiElement getNameIdentifier(DjinniFlagsValue flagsValue) {
+    PsiElement identifier = flagsValue.getIdentifier();
     ASTNode nameNode = identifier.getNode();
     if (nameNode != null) {
       return nameNode.getPsi();

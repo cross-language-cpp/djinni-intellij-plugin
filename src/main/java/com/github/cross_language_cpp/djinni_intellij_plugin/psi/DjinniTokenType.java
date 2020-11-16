@@ -1,5 +1,6 @@
 /*
  * Copyright 2015 Dropbox, Inc.
+ * Copyright 2020 cross-language-cpp
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,9 +20,6 @@ import com.github.cross_language_cpp.djinni_intellij_plugin.DjinniLanguage;
 import com.intellij.psi.tree.IElementType;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Created by jaetzold on 7/20/15.

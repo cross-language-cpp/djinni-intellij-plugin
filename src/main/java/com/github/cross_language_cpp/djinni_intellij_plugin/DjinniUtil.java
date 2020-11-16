@@ -1,5 +1,6 @@
 /*
  * Copyright 2015 Dropbox, Inc.
+ * Copyright 2020 cross-language-cpp
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -145,7 +146,7 @@ public class DjinniUtil {
     return result;
   }
 
-  private static List<String> builtinTypeNames = new ArrayList<String>(Arrays.asList("bool" , "i8" , "i16" , "i32" , "i64" , "f32" , "f64" , "string" , "binary" , "date", "set", "map", "list", "optional"));
+  private static final List<String> builtinTypeNames = new ArrayList<String>(Arrays.asList("bool" , "i8" , "i16" , "i32" , "i64" , "f32" , "f64" , "string" , "binary" , "date", "set", "map", "list", "optional"));
   @NotNull
   public static List<String> getBuiltinTypeNames(Project project, PsiElement visibilityContext) {
     return builtinTypeNames;

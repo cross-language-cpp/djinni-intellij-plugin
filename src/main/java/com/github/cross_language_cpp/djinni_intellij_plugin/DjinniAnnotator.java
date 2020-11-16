@@ -1,5 +1,6 @@
 /*
  * Copyright 2015 Dropbox, Inc.
+ * Copyright 2020 cross-language-cpp
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,6 +43,7 @@ public class DjinniAnnotator implements Annotator {
         Annotation annotation = holder.createErrorAnnotation(element, "Unresolved type");
         annotation.setNeedsUpdateOnTyping(true);
         annotation.registerFix(new DjinniCreateTypeDefinitionQuickFix(typeReference.getText(), DjinniPsiImplUtil.DjinniType.RECORD));
+        annotation.registerFix(new DjinniCreateTypeDefinitionQuickFix(typeReference.getText(), DjinniPsiImplUtil.DjinniType.FLAGS));
         annotation.registerFix(new DjinniCreateTypeDefinitionQuickFix(typeReference.getText(), DjinniPsiImplUtil.DjinniType.INTERFACE));
         annotation.registerFix(new DjinniCreateTypeDefinitionQuickFix(typeReference.getText(), DjinniPsiImplUtil.DjinniType.ENUM));
       }

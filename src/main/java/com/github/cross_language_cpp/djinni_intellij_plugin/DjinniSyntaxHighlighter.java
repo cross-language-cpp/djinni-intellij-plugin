@@ -1,5 +1,6 @@
 /*
  * Copyright 2015 Dropbox, Inc.
+ * Copyright 2020 cross-language-cpp
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,6 +35,7 @@ import static com.intellij.openapi.editor.colors.TextAttributesKey.createTextAtt
 public class DjinniSyntaxHighlighter extends SyntaxHighlighterBase {
   public static TokenSet KEYWORD_TOKENS = TokenSet.create(DjinniTypes.EQ_KEYWORD,
       DjinniTypes.ENUM,
+      DjinniTypes.FLAGS,
       DjinniTypes.INTERFACE,
       DjinniTypes.CONST,
       DjinniTypes.EXTERN,

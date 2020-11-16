@@ -19,6 +19,12 @@ public interface DjinniTypeDefinition extends DjinniNamedElement {
   DjinniEnumTypeVariant getEnumTypeVariant();
 
   @NotNull
+  List<DjinniFlagsMember> getFlagsMemberList();
+
+  @Nullable
+  DjinniFlagsTypeVariant getFlagsTypeVariant();
+
+  @NotNull
   List<DjinniInterfaceMember> getInterfaceMemberList();
 
   @Nullable
