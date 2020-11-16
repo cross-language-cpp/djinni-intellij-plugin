@@ -16,10 +16,4 @@ public interface DjinniFlagsMember extends PsiElement {
   @NotNull
   PsiElement getSemicolon();
 
-  @Nullable
-  PsiElement getAll();
-
-  @Nullable
-  PsiElement getNone();
-
 }

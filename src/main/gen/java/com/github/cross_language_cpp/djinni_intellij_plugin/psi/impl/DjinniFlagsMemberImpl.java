@@ -44,16 +44,4 @@ public class DjinniFlagsMemberImpl extends ASTWrapperPsiElement implements Djinn
     return findNotNullChildByType(SEMICOLON);
   }
 
-  @Override
-  @Nullable
-  public PsiElement getAll() {
-    return findChildByType(ALL);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getNone() {
-    return findChildByType(NONE);
-  }
-
 }
