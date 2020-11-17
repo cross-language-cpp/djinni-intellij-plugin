@@ -596,10 +596,9 @@ public class DjinniParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // [static] identifier LEFT_PARAM_BRACE interfaceFunctionParamList? RIGHT_PARAM_BRACE [COLON typeReference] SEMICOLON
+  // [static | const] identifier LEFT_PARAM_BRACE interfaceFunctionParamList? RIGHT_PARAM_BRACE [COLON typeReference] SEMICOLON
   public static boolean interfaceMemberFunction(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "interfaceMemberFunction")) return false;
-    if (!nextTokenIs(b, "<interface member function>", IDENTIFIER, STATIC)) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, INTERFACE_MEMBER_FUNCTION, "<interface member function>");
     r = interfaceMemberFunction_0(b, l + 1);
@@ -612,11 +611,20 @@ public class DjinniParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // [static]
+  // [static | const]
   private static boolean interfaceMemberFunction_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "interfaceMemberFunction_0")) return false;
-    consumeToken(b, STATIC);
+    interfaceMemberFunction_0_0(b, l + 1);
     return true;
+  }
+
+  // static | const
+  private static boolean interfaceMemberFunction_0_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "interfaceMemberFunction_0_0")) return false;
+    boolean r;
+    r = consumeToken(b, STATIC);
+    if (!r) r = consumeToken(b, CONST);
+    return r;
   }
 
   // interfaceFunctionParamList?

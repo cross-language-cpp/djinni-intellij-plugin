@@ -63,6 +63,12 @@ public class DjinniInterfaceMemberFunctionImpl extends ASTWrapperPsiElement impl
   }
 
   @Override
+  @Nullable
+  public PsiElement getConst() {
+    return findChildByType(CONST);
+  }
+
+  @Override
   @NotNull
   public PsiElement getIdentifier() {
     return findNotNullChildByType(IDENTIFIER);

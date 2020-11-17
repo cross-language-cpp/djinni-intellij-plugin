@@ -129,7 +129,7 @@ interfaceTypeVariant ::= interface generator*
 
 interfaceMember ::= constMember | interfaceMemberFunction
 
-interfaceMemberFunction ::= [static] identifier LEFT_PARAM_BRACE interfaceFunctionParamList? RIGHT_PARAM_BRACE [COLON typeReference] SEMICOLON
+interfaceMemberFunction ::= [static | const] identifier LEFT_PARAM_BRACE interfaceFunctionParamList? RIGHT_PARAM_BRACE [COLON typeReference] SEMICOLON
 
 interfaceFunctionParamList ::=  (interfaceFunctionParam ',' interfaceFunctionParamList) | interfaceFunctionParam
 
