@@ -98,6 +98,7 @@ public class DjinniColorSettingsPage implements ColorSettingsPage {
             "my_cpp_interface = interface +c {\n" +
             "    method_returning_nothing(value: i32);\n" +
             "    method_returning_some_type(key: string): another_record;\n" +
+            "    const method_changing_nothing(): i32;\n" +
             "    static get_version(): i32;\n" +
             "\n" +
             "    # Interfaces can also have constants\n" +
