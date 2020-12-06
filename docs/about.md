@@ -8,4 +8,4 @@ Djinni is a tool for generating cross-language type declarations and interface b
 
 Get the plugin in the Jetbrains Marketplace:
 
-<script defer src="https://plugins.jetbrains.com/assets/scripts/mp-widget.js"></script>
+<iframe frameborder="none" width="384px" height="319px" src="https://plugins.jetbrains.com/embeddable/card/15347"></iframe>
