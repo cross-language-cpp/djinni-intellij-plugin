@@ -2,10 +2,8 @@
 
 # djinni-intellij-plugin Changelog
 
-## [Unreleased]
-- nothing
 
-## [0.10.3]
+## [Unreleased]
 ### Fixed
 - set pluginUntilBuild = 203.* to work with latest CLion
 
