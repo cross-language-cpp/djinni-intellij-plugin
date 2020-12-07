@@ -4,7 +4,7 @@
 
 ## [Unreleased]
 ### Fixed
-- set pluginUntilBuild = 203.* to work with latest CLion
+- set pluginUntilBuild = 203.* to work with latest IntelliJ Platform
 
 ### [0.10.2]
 - interfaces can now have `const` methods.
