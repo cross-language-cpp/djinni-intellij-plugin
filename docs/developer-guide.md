@@ -1,6 +1,8 @@
 # Developer Guide
 
-This document is supposed to help developers that want to make changes to the plugin.
+!!! info
+
+    This chapter is only interesting if you intend to make changes to the code of djinni generator
 
 ## Development Basics
 
