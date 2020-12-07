@@ -9,7 +9,6 @@
 ### [0.10.2]
 - interfaces can now have `const` methods.
 
-
 ## [0.10.1]
 ### Fixed
 - problem with new `flags` support: `all` and `none` must not interpreted as language keywords.
