@@ -33,3 +33,12 @@ If you decide to make changes to this file, the following manual steps are requi
     - <kbd>Right-Click</kbd> > <kbd>Generate JFlex Lexer</kbd>, in the file dialog click <kbd>Save</kbd> and <kbd>Replace</kbd>
 - `_DjinniLexer.flex`:
     - <kbd>Right-Click</kbd> > <kbd>Run JFlex Generator</kbd>
+  
+## Release process
+
+To release a new plugin version, the following steps must be followed:
+1. Create a new release-tag. Set a meaningful version number and describe what has changed in the new version.
+2. Wait. Github will automatically build the plugin, publish it to the [jetbrains marketplace](https://plugins.jetbrains.com/organization/cross-language-cpp) & upload the plugin-artifact to the release.
+3. The update will be verified by Jetbrains within a few days. Then it will be distributed to the users.
+
+That's it :)

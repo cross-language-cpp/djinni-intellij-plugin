@@ -1,15 +1,13 @@
 <idea-plugin>
     <id>com.github.cross-language-cpp.djinni-intellij-plugin</id>
-    <name>Djinni IDL file support</name>
+    <name>Djinni IDL File Support</name>
     <vendor>cross-language-cpp</vendor>
-
-
-  <!-- please see https://confluence.jetbrains.com/display/IDEADEV/Build+Number+Ranges for description -->
-  <idea-version since-build="139"/>
-
+    <description>
+      Adds basic navigation, code-completion and error highlighting support for .djinni IDL files.
+      Djinni is a tool for generating cross-language type declarations and interface bindings. It's designed to connect C++ with either Java or Objective-C.
+    </description>
 
   <depends>com.intellij.modules.lang</depends>
-
 
   <extensions defaultExtensionNs="com.intellij">
     <!-- Add your extensions here -->
@@ -18,7 +16,6 @@
     <lang.parserDefinition language="DjinniYaml" implementationClass="com.github.cross_language_cpp.djinni_intellij_plugin.YamlParserDefinition"/>
     <lang.syntaxHighlighterFactory key="Djinni" implementationClass="com.github.cross_language_cpp.djinni_intellij_plugin.DjinniSyntaxHighlighterFactory"/>
     <colorSettingsPage implementation="com.github.cross_language_cpp.djinni_intellij_plugin.DjinniColorSettingsPage"/>
-
     <annotator language="Djinni" implementationClass="com.github.cross_language_cpp.djinni_intellij_plugin.DjinniAnnotator"/>
     <completion.contributor language="Djinni" implementationClass="com.github.cross_language_cpp.djinni_intellij_plugin.DjinniCompletionContributor"/>
     <psi.referenceContributor implementation="com.github.cross_language_cpp.djinni_intellij_plugin.DjinniReferenceContributor"/>
