@@ -98,7 +98,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: plugin-artifact
-          path: ./build/distributions/djinni-intellij-plugin-${{ env.ARTIFACT_NAME }}
+          path: ./build/distributions/${{ env.ARTIFACT_NAME }}
 
   # Verify built plugin using IntelliJ Plugin Verifier tool
   # Requires build job to be passed
