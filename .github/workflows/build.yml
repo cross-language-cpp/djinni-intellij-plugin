@@ -44,8 +44,6 @@ jobs:
       # Check out current repository
       - name: Fetch Sources
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
 
       # Cache Gradle dependencies
       - name: Setup Gradle Dependencies Cache
@@ -85,6 +83,8 @@ jobs:
       # Check out current repository
       - name: Fetch Sources
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       # Cache Gradle Dependencies
       - name: Setup Gradle Dependencies Cache
