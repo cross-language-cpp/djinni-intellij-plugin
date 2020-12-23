@@ -16,15 +16,13 @@ jobs:
 
   # Run Gradle Wrapper Validation Action to verify the wrapper's checksum
   gradleValidation:
-    name: Gradle Wrapper
+    name: Gradle Wrapper Validation
     runs-on: ubuntu-latest
     steps:
 
-      # Check out current repository
       - name: Fetch Sources
         uses: actions/checkout@v2
 
-      # Validate wrapper
       - name: Gradle Wrapper Validation
         uses: gradle/wrapper-validation-action@v1
 
@@ -35,35 +33,29 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      # Setup Java 1.8 environment for the next steps
-      - name: Setup Java
+      - name: Setup Java 1.8 environment for the next steps
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
 
-      # Check out current repository
       - name: Fetch Sources
         uses: actions/checkout@v2
 
-      # Cache Gradle dependencies
       - name: Setup Gradle Dependencies Cache
         uses: actions/cache@v2
         with:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-caches-${{ hashFiles('**/*.gradle', '**/*.gradle.kts') }}
 
-      # Cache Gradle Wrapper
       - name: Setup Gradle Wrapper Cache
         uses: actions/cache@v2
         with:
           path: ~/.gradle/wrapper
           key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}
 
-      # Run detekt, ktlint and tests
-      - name: Run Linters and Test
+      - name: Run Checks
         run: ./gradlew check
 
-      # Run verifyPlugin Gradle task
       - name: Verify Plugin
         run: ./gradlew verifyPlugin
 
@@ -74,46 +66,39 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
-      # Setup Java 1.8 environment for the next steps
-      - name: Setup Java
+      - name: Setup Java 1.8 environment for the next steps
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
 
-      # Check out current repository
       - name: Fetch Sources
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
 
-      # Cache Gradle Dependencies
       - name: Setup Gradle Dependencies Cache
         uses: actions/cache@v2
         with:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-caches-${{ hashFiles('**/*.gradle', '**/*.gradle.kts') }}
 
-      # Cache Gradle Wrapper
       - name: Setup Gradle Wrapper Cache
         uses: actions/cache@v2
         with:
           path: ~/.gradle/wrapper
           key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}
 
-      # Build artifact using buildPlugin Gradle task
       - name: Build Plugin
         run: ./gradlew buildPlugin
 
-      # Render expected artifact name
-      - name: Artifact name
+      - name: Determine Artifact Name
         run: echo "ARTIFACT_NAME=djinni-intellij-plugin-$(./gradlew printVersion --console=plain -q).zip" >> $GITHUB_ENV
 
-      # Upload plugin artifact to make it available in the next jobs
-      - name: Upload artifact
+      - name: Upload Artifact
         uses: actions/upload-artifact@v1
         with:
           name: plugin-artifact
-          path: ./build/distributions/djinni-intellij-plugin-${{ env.ARTIFACT_NAME }}.zip
+          path: ./build/distributions/djinni-intellij-plugin-${{ env.ARTIFACT_NAME }}
 
   # Verify built plugin using IntelliJ Plugin Verifier tool
   # Requires build job to be passed
@@ -122,14 +107,11 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-
-      # Download plugin artifact provided by the previous job
       - name: Download Artifact
         uses: actions/download-artifact@v1
         with:
           name: plugin-artifact
 
-      # Run IntelliJ Plugin Verifier action using GitHub Action
       - name: Verify Plugin
         id: verify
         uses: ChrisCarini/intellij-platform-plugin-verifier-action@v0.0.2
@@ -137,8 +119,7 @@ jobs:
           plugin-location: plugin-artifact/*.zip
           ide-versions: ideaIC:2020.3
 
-      # Print the output of the verify step
-      - name: Print Logs
+      - name: Print Verify Logs
         if: ${{ always() }}
         env:
           OUTPUT_LOG: ${{ steps.verify.outputs.verification-output-log-filename }}
