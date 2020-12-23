@@ -44,6 +44,8 @@ jobs:
       # Check out current repository
       - name: Fetch Sources
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       # Cache Gradle dependencies
       - name: Setup Gradle Dependencies Cache
@@ -73,12 +75,7 @@ jobs:
     name: Build
     needs: test
     runs-on: ubuntu-latest
-    outputs:
-      name: ${{ steps.properties.outputs.name }}
-      version: ${{ steps.properties.outputs.version }}
-      artifact: ${{ steps.properties.outputs.artifact }}
     steps:
-
       # Setup Java 1.8 environment for the next steps
       - name: Setup Java
         uses: actions/setup-java@v1
@@ -103,30 +100,20 @@ jobs:
           path: ~/.gradle/wrapper
           key: ${{ runner.os }}-gradle-wrapper-${{ hashFiles('**/gradle/wrapper/gradle-wrapper.properties') }}
 
-      # Set environment variables
-      - name: Export Properties
-        id: properties
-        shell: bash
-        run: |
-          PROPERTIES="$(./gradlew properties --console=plain -q)"
-          VERSION="$(echo "$PROPERTIES" | grep "^version:" | cut -f2- -d ' ')"
-          NAME="$(echo "$PROPERTIES" | grep "^pluginName_:" | cut -f2- -d ' ')"
-          ARTIFACT="${NAME}-${VERSION}.zip"
-
-          echo "::set-output name=version::$VERSION"
-          echo "::set-output name=name::$NAME"
-          echo "::set-output name=artifact::$ARTIFACT"
-
       # Build artifact using buildPlugin Gradle task
       - name: Build Plugin
         run: ./gradlew buildPlugin
+
+      # Render expected artifact name
+      - name: Artifact name
+        run: echo "ARTIFACT_NAME=djinni-intellij-plugin-$(./gradlew printVersion --console=plain -q).zip" >> $GITHUB_ENV
 
       # Upload plugin artifact to make it available in the next jobs
       - name: Upload artifact
         uses: actions/upload-artifact@v1
         with:
           name: plugin-artifact
-          path: ./build/distributions/${{ needs.build.outputs.artifact }}
+          path: ./build/distributions/djinni-intellij-plugin-${{ env.ARTIFACT_NAME }}.zip
 
   # Verify built plugin using IntelliJ Plugin Verifier tool
   # Requires build job to be passed
