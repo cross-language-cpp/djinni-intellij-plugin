@@ -8,7 +8,7 @@ plugins {
     // Kotlin support
     id("org.jetbrains.kotlin.jvm") version "1.4.21"
     // gradle-intellij-plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
-    id("org.jetbrains.intellij") version "0.6.4"
+    id("org.jetbrains.intellij") version "0.6.5"
     // get version from git tag
     id("com.palantir.git-version") version "0.12.3"
 }
@@ -56,7 +56,7 @@ tasks {
     patchPluginXml {
         version(version)
         sinceBuild("193")
-        untilBuild("203.*")
+        untilBuild(null)
     }
 
     publishPlugin {
