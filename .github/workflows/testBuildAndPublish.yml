@@ -9,7 +9,6 @@
 # - GitHub Actions: https://help.github.com/en/actions
 # - IntelliJ Plugin Verifier GitHub Action: https://github.com/ChrisCarini/intellij-platform-plugin-verifier-action
 
-
 on:
   push:
     branches:
@@ -80,7 +79,6 @@ jobs:
       with:
         name: plugin-artifact
         path: ${{ env.ARTIFACT_PATH }}
-
   # Verify built plugin using IntelliJ Plugin Verifier tool
   # Requires build job to be passed
   verify:

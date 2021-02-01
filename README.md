@@ -4,7 +4,7 @@
 [![Version](https://img.shields.io/jetbrains/plugin/v/15347-djinni-idl-file-support.svg)](https://plugins.jetbrains.com/plugin/15347-djinni-idl-file-support)
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/15347-djinni-idl-file-support.svg)](https://plugins.jetbrains.com/plugin/15347-djinni-idl-file-support)
 
-:arrow_right: Documentation: [djinni.xlcpp.dev](https://djinni.xlcpp.dev/djinni-intellij-plugin/about/)
+:arrow_right: Documentation: [djinni.xlcpp.dev](https://djinni.xlcpp.dev/djinni-intellij-plugin/)
 
 Adds basic navigation, code-completion and error highlighting support for `.djinni` IDL files.
 
@@ -24,6 +24,7 @@ Djinni is a tool for generating cross-language type declarations and interface b
   <kbd>Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
 
 ## Plugin development
+
 If you want to make changes to the plugin, read the [Developer Guide](https://djinni.xlcpp.dev/djinni-intellij-plugin/developer-guide/)
 
 ---
