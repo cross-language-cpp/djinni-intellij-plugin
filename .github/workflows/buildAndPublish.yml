@@ -21,20 +21,9 @@ on:
 name: Build
 
 jobs:
-  # Run Gradle Wrapper Validation Action to verify the wrapper's checksum
-  gradleValidation:
-    name: Gradle Wrapper Validation
-    runs-on: ubuntu-latest
-    steps:
-    - name: Fetch Sources
-      uses: actions/checkout@v2
-    - name: Gradle Wrapper Validation
-      uses: gradle/wrapper-validation-action@v1
-
   # Run verifyPlugin and test Gradle tasks
   test:
     name: Test
-    needs: gradleValidation
     runs-on: ubuntu-latest
     steps:
     - name: Setup Java 1.8 environment for the next steps
@@ -62,7 +51,6 @@ jobs:
   # Requires test job to be passed
   build:
     name: Build
-    needs: test
     runs-on: ubuntu-latest
     steps:
     - name: Setup Java 1.8 environment for the next steps
@@ -121,7 +109,9 @@ jobs:
     name: Publish Plugin
     runs-on: ubuntu-latest
     if: github.event_name == 'release'
-    needs: verify
+    needs:
+    - verify
+    - test
     steps:
     - name: Setup Java 1.8 environment for the next steps
       uses: actions/setup-java@v1
