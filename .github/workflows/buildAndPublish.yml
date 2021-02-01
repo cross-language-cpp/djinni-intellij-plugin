@@ -85,7 +85,9 @@ jobs:
   # Requires build job to be passed
   verify:
     name: Verify
-    needs: build
+    needs:
+    - build
+    - test
     runs-on: ubuntu-latest
     steps:
     - name: Download Artifact
@@ -109,9 +111,7 @@ jobs:
     name: Publish Plugin
     runs-on: ubuntu-latest
     if: github.event_name == 'release'
-    needs:
-    - verify
-    - test
+    needs: verify
     steps:
     - name: Setup Java 1.8 environment for the next steps
       uses: actions/setup-java@v1
