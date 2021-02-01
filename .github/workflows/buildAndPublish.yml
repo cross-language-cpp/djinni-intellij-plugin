@@ -108,7 +108,7 @@ jobs:
         echo "The verifier log file [$OUTPUT_LOG] contents : " ;
         cat $OUTPUT_LOG
   release:
-    name: Publish Plugin
+    name: Publish
     runs-on: ubuntu-latest
     if: github.event_name == 'release'
     needs: verify
