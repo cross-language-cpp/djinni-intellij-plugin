@@ -18,7 +18,7 @@ on:
   release:
     types: [released]
 
-name: Build
+name: Test, Build & Publish Plugin
 
 jobs:
   # Run verifyPlugin and test Gradle tasks
