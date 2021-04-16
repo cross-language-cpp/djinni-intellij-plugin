@@ -18,14 +18,12 @@ public interface DjinniImportStatement extends PsiNamedElement {
   @NotNull
   PsiElement getStringLiteral();
 
-  @NotNull
-  String getName();
+  @NotNull String getName();
 
   PsiElement setName(String newName);
 
   TextRange getRangeOfPath();
 
-  @NotNull
-  String getPath();
+  @NotNull String getPath();
 
 }

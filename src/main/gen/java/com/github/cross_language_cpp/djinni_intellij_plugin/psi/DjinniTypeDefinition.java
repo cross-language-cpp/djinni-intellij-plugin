@@ -56,15 +56,13 @@ public interface DjinniTypeDefinition extends DjinniNamedElement {
 
   String getTypeName();
 
-  @NotNull
-  DjinniType getDjinniType();
+  @NotNull DjinniType getDjinniType();
 
   String getName();
 
   PsiElement setName(String newName);
 
-  @Nullable
-  PsiElement getNameIdentifier();
+  @Nullable PsiElement getNameIdentifier();
 
   ItemPresentation getPresentation();
 

@@ -61,6 +61,7 @@ public interface DjinniTypes {
   IElementType NUMBER_LITERAL = new DjinniTokenType("number_literal");
   IElementType OPTIONAL = new DjinniTokenType("optional");
   IElementType ORD = new DjinniTokenType("ord");
+  IElementType PARCELABLE = new DjinniTokenType("parcelable");
   IElementType PLUS = new DjinniTokenType("+");
   IElementType RECORD = new DjinniTokenType("record");
   IElementType RIGHT_BLOCK_BRACE = new DjinniTokenType("}");

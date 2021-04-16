@@ -21,6 +21,7 @@ public class DjinniDerivingParamImpl extends ASTWrapperPsiElement implements Dji
     visitor.visitDerivingParam(this);
   }
 
+  @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof DjinniVisitor) accept((DjinniVisitor)visitor);
     else super.accept(visitor);
@@ -36,6 +37,12 @@ public class DjinniDerivingParamImpl extends ASTWrapperPsiElement implements Dji
   @Nullable
   public PsiElement getOrd() {
     return findChildByType(ORD);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getParcelable() {
+    return findChildByType(PARCELABLE);
   }
 
 }

@@ -14,7 +14,6 @@ public interface DjinniFlagsValue extends DjinniNamedElement {
 
   PsiElement setName(String newName);
 
-  @Nullable
-  PsiElement getNameIdentifier();
+  @Nullable PsiElement getNameIdentifier();
 
 }

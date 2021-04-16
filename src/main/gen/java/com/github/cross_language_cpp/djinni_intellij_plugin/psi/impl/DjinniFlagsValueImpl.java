@@ -20,6 +20,7 @@ public class DjinniFlagsValueImpl extends DjinniReferenceImpl implements DjinniF
     visitor.visitFlagsValue(this);
   }
 
+  @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof DjinniVisitor) accept((DjinniVisitor)visitor);
     else super.accept(visitor);
@@ -42,8 +43,7 @@ public class DjinniFlagsValueImpl extends DjinniReferenceImpl implements DjinniF
   }
 
   @Override
-  @Nullable
-  public PsiElement getNameIdentifier() {
+  public @Nullable PsiElement getNameIdentifier() {
     return DjinniPsiImplUtil.getNameIdentifier(this);
   }
 

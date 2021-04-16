@@ -53,6 +53,7 @@ TEXT=[a-zA-Z_0-9]+
   "record"              { return RECORD; }
   "eq"                  { return EQ_KEYWORD; }
   "ord"                 { return ORD; }
+  "parcelable"          { return PARCELABLE; }
   "interface"           { return INTERFACE; }
   "static"              { return STATIC; }
   "const"               { return CONST; }

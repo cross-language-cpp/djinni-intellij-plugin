@@ -21,6 +21,7 @@ public class DjinniConstValueImpl extends ASTWrapperPsiElement implements Djinni
     visitor.visitConstValue(this);
   }
 
+  @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof DjinniVisitor) accept((DjinniVisitor)visitor);
     else super.accept(visitor);

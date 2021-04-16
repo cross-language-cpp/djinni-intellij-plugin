@@ -22,6 +22,7 @@ public class DjinniTypeDefinitionImpl extends DjinniNamedElementImpl implements 
     visitor.visitTypeDefinition(this);
   }
 
+  @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof DjinniVisitor) accept((DjinniVisitor)visitor);
     else super.accept(visitor);
@@ -123,8 +124,7 @@ public class DjinniTypeDefinitionImpl extends DjinniNamedElementImpl implements 
   }
 
   @Override
-  @NotNull
-  public DjinniType getDjinniType() {
+  public @NotNull DjinniType getDjinniType() {
     return DjinniPsiImplUtil.getDjinniType(this);
   }
 
@@ -139,8 +139,7 @@ public class DjinniTypeDefinitionImpl extends DjinniNamedElementImpl implements 
   }
 
   @Override
-  @Nullable
-  public PsiElement getNameIdentifier() {
+  public @Nullable PsiElement getNameIdentifier() {
     return DjinniPsiImplUtil.getNameIdentifier(this);
   }
 

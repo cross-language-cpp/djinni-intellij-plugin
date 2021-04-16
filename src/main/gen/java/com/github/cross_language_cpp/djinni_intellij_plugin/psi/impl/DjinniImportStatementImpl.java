@@ -21,6 +21,7 @@ public class DjinniImportStatementImpl extends DjinniImportStatementBaseImpl imp
     visitor.visitImportStatement(this);
   }
 
+  @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof DjinniVisitor) accept((DjinniVisitor)visitor);
     else super.accept(visitor);
@@ -45,8 +46,7 @@ public class DjinniImportStatementImpl extends DjinniImportStatementBaseImpl imp
   }
 
   @Override
-  @NotNull
-  public String getName() {
+  public @NotNull String getName() {
     return DjinniPsiImplUtil.getName(this);
   }
 
@@ -61,8 +61,7 @@ public class DjinniImportStatementImpl extends DjinniImportStatementBaseImpl imp
   }
 
   @Override
-  @NotNull
-  public String getPath() {
+  public @NotNull String getPath() {
     return DjinniPsiImplUtil.getPath(this);
   }
 

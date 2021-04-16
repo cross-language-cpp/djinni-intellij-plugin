@@ -17,7 +17,6 @@ public interface DjinniTypeReference extends DjinniNamedElement {
 
   PsiElement setName(String newName);
 
-  @Nullable
-  PsiElement getNameIdentifier();
+  @Nullable PsiElement getNameIdentifier();
 
 }
