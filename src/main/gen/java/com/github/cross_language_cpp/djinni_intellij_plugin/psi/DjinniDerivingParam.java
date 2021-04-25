@@ -13,4 +13,7 @@ public interface DjinniDerivingParam extends PsiElement {
   @Nullable
   PsiElement getOrd();
 
+  @Nullable
+  PsiElement getParcelable();
+
 }

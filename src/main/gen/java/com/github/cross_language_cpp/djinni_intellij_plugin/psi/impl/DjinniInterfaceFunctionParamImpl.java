@@ -21,6 +21,7 @@ public class DjinniInterfaceFunctionParamImpl extends ASTWrapperPsiElement imple
     visitor.visitInterfaceFunctionParam(this);
   }
 
+  @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof DjinniVisitor) accept((DjinniVisitor)visitor);
     else super.accept(visitor);

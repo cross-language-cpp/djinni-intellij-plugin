@@ -39,6 +39,7 @@ If you decide to make changes to this file, the following manual steps are requi
 
 To release a new plugin version, the following steps must be followed:
 
-1. Create a new release-tag on github. Set a meaningful version number and describe what has changed in the new version.
+1. Create a [new release](https://github.com/cross-language-cpp/djinni-intellij-plugin/releases/new) on Github like [described here](https://docs.github.com/en/github/administering-a-repository/managing-releases-in-a-repository).
+   Set a tag version following [semantic versioning](https://semver.org/) rules (`v<MAJOR>.<MINOR>.<PATCH>`) and describe what has changed in the new version.
 2. Wait. Github will automatically build the plugin, publish it to the [jetbrains marketplace](https://plugins.jetbrains.com/organization/cross-language-cpp) & upload the plugin-artifact to the release.
 3. The update will be verified by Jetbrains within a few days. Then it will be distributed to the users.

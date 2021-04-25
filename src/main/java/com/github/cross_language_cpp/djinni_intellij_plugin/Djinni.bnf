@@ -52,6 +52,7 @@
     record="record"
     eq_keyword="eq"
     ord="ord"
+    parcelable="parcelable"
     interface="interface"
     static="static"
     const="const"
@@ -77,7 +78,7 @@ typeDefinition ::= identifier EQ typeDescription {
 
 private typeDescription ::= enumDescription | flagsDescription | recordDescription | interfaceDescription
 
-generator ::= (PLUS 'c') | (PLUS 'j') | (PLUS 'o')
+generator ::= (PLUS 'c') | (PLUS 'j') | (PLUS 'o') | (PLUS 'p') | (PLUS 's')
 
 // enum
 
@@ -115,7 +116,7 @@ recordTypeVariant ::= record generator*
 
 derivingParamList ::= (derivingParam ',' derivingParamList) | derivingParam
 
-derivingParam ::= eq_keyword | ord
+derivingParam ::= eq_keyword | ord | parcelable
 
 recordMember ::= constMember | recordMemberVariable
 

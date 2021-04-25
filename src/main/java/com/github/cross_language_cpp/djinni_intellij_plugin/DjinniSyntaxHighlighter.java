@@ -41,6 +41,7 @@ public class DjinniSyntaxHighlighter extends SyntaxHighlighterBase {
       DjinniTypes.EXTERN,
       DjinniTypes.IMPORT,
       DjinniTypes.ORD,
+      DjinniTypes.PARCELABLE,
       DjinniTypes.RECORD,
       DjinniTypes.STATIC);
 

@@ -21,6 +21,7 @@ public class DjinniConstRecordMemberElementImpl extends ASTWrapperPsiElement imp
     visitor.visitConstRecordMemberElement(this);
   }
 
+  @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof DjinniVisitor) accept((DjinniVisitor)visitor);
     else super.accept(visitor);

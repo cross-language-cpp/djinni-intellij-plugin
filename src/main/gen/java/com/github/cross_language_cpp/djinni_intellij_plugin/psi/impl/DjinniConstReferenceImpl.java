@@ -20,6 +20,7 @@ public class DjinniConstReferenceImpl extends DjinniReferenceImpl implements Dji
     visitor.visitConstReference(this);
   }
 
+  @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof DjinniVisitor) accept((DjinniVisitor)visitor);
     else super.accept(visitor);
@@ -42,8 +43,7 @@ public class DjinniConstReferenceImpl extends DjinniReferenceImpl implements Dji
   }
 
   @Override
-  @Nullable
-  public PsiElement getNameIdentifier() {
+  public @Nullable PsiElement getNameIdentifier() {
     return DjinniPsiImplUtil.getNameIdentifier(this);
   }
 
